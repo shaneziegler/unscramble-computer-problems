@@ -32,16 +32,3 @@ phone_numbers_set = set(list)
 count = len(phone_numbers_set)
 
 print(f"There are {len(phone_numbers_set)} different telephone numbers in the records.")
-
-# Try using dictionary instead
-#Comes up with same count
-# temp = {}
-
-# for i in list:
-#     if i in temp:
-#         temp[i] += 1
-#     else:
-#         temp[i] = 1
-
-# count = len(temp)
-# print(count)
