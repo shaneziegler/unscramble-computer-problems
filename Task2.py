@@ -20,3 +20,4 @@ Print a message:
 September 2016.".
 """
 
+#probably use a dict that adds in time for each unique phone #
