@@ -21,3 +21,11 @@ September 2016.".
 """
 
 #probably use a dict that adds in time for each unique phone #
+
+call_time = {}
+
+for i in list:
+    if i in temp:
+        call_time[i] += 1
+    else:
+        call_time[i] = 1
