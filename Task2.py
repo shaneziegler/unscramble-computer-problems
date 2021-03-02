@@ -20,12 +20,23 @@ Print a message:
 September 2016.".
 """
 
-#probably use a dict that adds in time for each unique phone #
-
-call_time = {}
-
-for i in list:
-    if i in temp:
-        call_time[i] += 1
+call_time = {} # Create a blank dictionary to add up our call times in
+for call in calls:
+    if call[0] in call_time:
+        call_time[call[0]] += int(call[3]) # Add call seconds to time
     else:
-        call_time[i] = 1
+        call_time[call[0]] = int(call[3]) # Not in dictionary yet
+    if call[1] in call_time:
+        call_time[call[1]] += int(call[3]) # Add call seconds to time
+    else:
+        call_time[call[1]] = int(call[3]) # Not in dictionary yet
+
+# Find longest call time in our dictionary
+longest = 0
+longest_phonenum = ""
+for key, value in call_time.items():
+    if value > longest: # Save longest call time and phone number
+        longest = value
+        longest_phonenum = key
+
+print(f"{longest_phonenum} spent the longest time, {longest} seconds, on the phone during September 2016.")
