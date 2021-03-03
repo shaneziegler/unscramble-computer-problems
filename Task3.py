@@ -3,7 +3,6 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 import csv
-
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
@@ -39,3 +38,33 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def get_prefix(str):
+    str = str.strip()
+    pre = ""
+    if str[0] == "(": # Do fixed line prefix
+        end = str.find(")")
+        if end == -1:
+            return None
+        else:
+            pre = str[1:end]
+    elif str[0:2] == "140": # Do telemarketer prefix
+        pre = "140"
+    elif str.find(" ") != -1: # Do mobile prefix
+        pre = str[0:str.find(" ")]
+    else: # Unknown Format
+        return None
+    return pre
+
+calls_made = []
+
+for call in calls:
+    prefix1 = get_prefix(call[0])
+    prefix2 = get_prefix(call[1])
+    if prefix1 == '080':
+        calls_made.append(prefix2)
+
+
+
+print("The numbers called by people in Bangalore have codes:")
+
