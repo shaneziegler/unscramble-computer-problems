@@ -25,3 +25,21 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+# Create list of all numbers making outgoing calls - calls[0]
+# Remove any from list that send texts - texts[0]
+# Remove any from list that recieve texts - texts[1]
+# Remove any from list that never recieve calls - calls[1]
+# Remove duplicates
+# Sort list
+telemarketers = []
+
+
+
+
+
+
+telemarketers = list(set(telemarketers)) # Remove dups
+telemarketers.sort()
+print("These numbers could be telemarketers:")
+for telemarketer in telemarketers:
+    print(telemarketer)
