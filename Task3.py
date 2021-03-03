@@ -41,34 +41,38 @@ The percentage should have 2 decimal digits
 
 def get_prefix(str):
     str = str.strip()
-    pre = ""
     if str[0] == "(": # Do fixed line prefix
         end = str.find(")")
         if end == -1:
-            return None
+            return None # ) not found, unknown formatting
         else:
-            pre = str[1:end]
+            return str[1:end]
     elif str[0:2] == "140": # Do telemarketer prefix
-        pre = "140"
+        return "140"
     elif str.find(" ") != -1: # Do mobile prefix
-        pre = str[0:str.find(" ")]
+        return str[0:str.find(" ")]
     else: # Unknown Format
         return None
-    return pre
 
 code_list = []
+bangalore_call_count = 0
+calls_to_bangalore = 0
 
 for call in calls:
     prefix1 = get_prefix(call[0])
     prefix2 = get_prefix(call[1])
     if prefix1 == '080':
         code_list.append(prefix2)
+        bangalore_call_count += 1
+        if prefix2 == '080':
+            calls_to_bangalore += 1
 
-
+bang_call_percent = (calls_to_bangalore / bangalore_call_count) * 100
 
 print("The numbers called by people in Bangalore have codes:")
-code_list = list(set(code_list))
+code_list = list(set(code_list)) # Remove dups
 code_list.sort()
 for code in code_list:
     print(code)
 
+print("{percent:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percent = bang_call_percent))
