@@ -28,17 +28,26 @@ The list of numbers should be print out one per line in lexicographic order with
 # Create list of all numbers making outgoing calls - calls[0]
 # Remove any from list that send texts - texts[0]
 # Remove any from list that recieve texts - texts[1]
-# Remove any from list that never recieve calls - calls[1]
+# Remove any from list that recieve calls - calls[1]
 # Remove duplicates
 # Sort list
 telemarketers = []
 
-
-
-
-
+for call in calls: # Create list of all numbers that make outgoing calls
+    telemarketers.append(call[0].strip())
 
 telemarketers = list(set(telemarketers)) # Remove dups
+
+for text in texts: # Remove any numbers that send/receive texts
+    if text[0].strip() in telemarketers:
+        telemarketers.remove(text[0].strip())
+    if text[1].strip() in telemarketers:
+        telemarketers.remove(text[1].strip())
+
+for call in calls: # Remove any numbers that received calls
+    if call[1].strip() in telemarketers:
+        telemarketers.remove(call[1].strip())
+
 telemarketers.sort()
 print("These numbers could be telemarketers:")
 for telemarketer in telemarketers:
