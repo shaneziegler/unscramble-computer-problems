@@ -56,15 +56,19 @@ def get_prefix(str):
         return None
     return pre
 
-calls_made = []
+code_list = []
 
 for call in calls:
     prefix1 = get_prefix(call[0])
     prefix2 = get_prefix(call[1])
     if prefix1 == '080':
-        calls_made.append(prefix2)
+        code_list.append(prefix2)
 
 
 
 print("The numbers called by people in Bangalore have codes:")
+code_list = list(set(code_list))
+code_list.sort()
+for code in code_list:
+    print(code)
 
